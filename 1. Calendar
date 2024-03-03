@@ -5,15 +5,13 @@
 
 #define NUM_DAYS_IN_WEEK 7
 
-//Global variable Declaration
 int i;
 
-// Structure to represent a day
 typedef struct
 {
-    char *acDayName;    // Dynamically allocated string for the day name
-    int iDate;         // Date of the day
-    char *acActivity;  // Dynamically allocated string for the activity description
+    char *acDayName;   
+    int iDate;         
+    char *acActivity; 
 }DAYTYPE;
 
 //Prototypes
@@ -25,22 +23,17 @@ DAYTYPE *CreateCal();
 //Main function
 int main() 
 {
-    // Create the calendar
     DAYTYPE *weeklyCalendar = CreateCal();
 
-    // Read data from the keyboard
     ReadCal(weeklyCalendar);
 
-    // Display the week's activity details
     DispCal(weeklyCalendar);
 
-    // Free allocated memory
     FreeCal(weeklyCalendar);
 
     return 0;
 }
 
-// Createcalender function definition
 DAYTYPE *CreateCal() 
 {
     DAYTYPE *calendar = (DAYTYPE *)malloc(NUM_DAYS_IN_WEEK * sizeof(DAYTYPE));
@@ -55,7 +48,6 @@ DAYTYPE *CreateCal()
 
     return calendar;
 }
-// Read Calender function definition
 void ReadCal(DAYTYPE *calendar) 
 {
 	char Choice;
@@ -71,7 +63,7 @@ void ReadCal(DAYTYPE *calendar)
         printf("Day Name: ");
         char nameBuffer[50];
         scanf("%s", nameBuffer);
-        calendar[i].acDayName = strdup(nameBuffer);  // Dynamically allocate and copy the string
+        calendar[i].acDayName = strdup(nameBuffer);
 
 
         printf("Date: ");
@@ -80,11 +72,11 @@ void ReadCal(DAYTYPE *calendar)
         
         printf("Activity: ");
         char activityBuffer[100];
-        scanf(" %[^\n]", activityBuffer);  // Read the entire line, including spaces
+        scanf(" %[^\n]", activityBuffer); 
         calendar[i].acActivity = strdup(activityBuffer); 
 
         printf("\n");
-        getchar(); //remove trailing enter character in input buffer
+        getchar(); 
     }
 }
 
@@ -107,7 +99,6 @@ void DispCal(DAYTYPE *calendar)
     }
 }
 
-// FreeCalender function definition
 void FreeCal(DAYTYPE *calendar) 
 {
     for( i = 0; i < NUM_DAYS_IN_WEEK; i++) 
@@ -117,4 +108,3 @@ void FreeCal(DAYTYPE *calendar)
     }
     free(calendar);
 }
-
